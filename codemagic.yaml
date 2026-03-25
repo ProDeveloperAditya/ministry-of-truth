@@ -16,6 +16,6 @@ workflows:
           cd ios && pod install --repo-update
       - name: Build iOS (No Codesign for testing)
         script: |
-          flutter build ios --debug --no-codesign
+          flutter build ipa --release
     artifacts:
-      - build/ios/iphoneos/*.app
+      - build/ios/ipa/*.ipa
