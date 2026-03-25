@@ -13,10 +13,9 @@ workflows:
           flutter pub get
       - name: Install CocoaPods dependencies
         script: |
-          cd ios && pod install
+          cd ios && pod install --repo-update
       - name: Build iOS (No Codesign for testing)
         script: |
           flutter build ios --debug --no-codesign
     artifacts:
       - build/ios/iphoneos/*.app
-      - flutter_drive.log

@@ -6,8 +6,8 @@ import 'package:dio/io.dart';
 import 'dart:io';
 
 class ApiService {
-  // Cloud Run Production URL (Mumbai - VERIFIED WORKING via curl)
-  static const String baseUrl = 'https://detector-backend-1024807289618.asia-south1.run.app/api';
+  // Render.com Free Tier Backend (5-Layer Forensic Engine)
+  static const String baseUrl = 'https://ministry-of-truth-backend.onrender.com/api';
   
   late final Dio _dio;
 
