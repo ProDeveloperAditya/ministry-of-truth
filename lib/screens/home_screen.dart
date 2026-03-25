@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:share_handler/share_handler.dart';
 import 'dart:ui';
 import '../theme/app_theme.dart';
 import 'analyzing_screen.dart';
@@ -14,37 +13,6 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final ImagePicker _picker = ImagePicker();
-
-  @override
-  void initState() {
-    super.initState();
-    _initShareListener();
-  }
-
-  /// Listens for images shared from external apps (e.g., iOS Photos "Share" sheet).
-  void _initShareListener() {
-    // Handle shared media when app is already running
-    ShareHandlerPlatform.instance.sharedMediaStream.listen((SharedMedia media) {
-      if (media.attachments != null && media.attachments!.isNotEmpty) {
-        final attachment = media.attachments!.first;
-        if (attachment?.path != null) {
-          final xFile = XFile(attachment!.path!);
-          _navigateToAnalysis(xFile, false);
-        }
-      }
-    });
-
-    // Handle shared media that launched the app (cold start)
-    ShareHandlerPlatform.instance.getInitialSharedMedia().then((SharedMedia? media) {
-      if (media != null && media.attachments != null && media.attachments!.isNotEmpty) {
-        final attachment = media.attachments!.first;
-        if (attachment?.path != null) {
-          final xFile = XFile(attachment!.path!);
-          _navigateToAnalysis(xFile, false);
-        }
-      }
-    });
-  }
 
   void _navigateToAnalysis(XFile media, bool isVideo) {
     if (!mounted) return;
